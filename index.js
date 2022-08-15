@@ -1,7 +1,5 @@
 // Function for computer Selection of RPS
 
-
-
 function compuChoice() {
    let num = (Math.floor(Math.random() * 3))
     if (num === 0) {
@@ -53,3 +51,10 @@ function singleRound(playerSelection, compuChoice) {
 let playerSelection = prompt('Rock, Paper, Scissors');
 let compuSelection = compuChoice();
 console.log(singleRound(playerSelection, compuSelection));
+
+
+//function that makes games 5 rounds 
+
+function game() {
+    singleRound()
+}
