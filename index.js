@@ -1,75 +1,80 @@
-let myScore = 0
-let compScore = 0
+let playerScore = 0;
+let computerScore = 0;
+let draws = 0;
 
-// Function for computer Selection of RPS
-
-function compuChoice() {
-   let num = (Math.floor(Math.random() * 3))
-    if (num === 0) {
-    return 'Rock';
-    } 
-    else if (num === 1) {
-        return 'Paper';
-    }
-    else if (num === 2){
-        return 'Scissors';
-    }
-
+//Computer choice
+function computerChoice() {
+  let random = (Math.floor(Math.random() * 3));
+  if (random === 0) {
+    return "paper";
+  } else if (random === 1) {
+    return "rock";
+  } else if (random === 2) {
+    return "scissors";
+  }
 }
-//console.log(compuChoice());
 
-//function that plays a single round of RPS
+//Plays one round of RPS
+function playRound(playerChoice, computerSelection) {
+  if (playerChoice === computerSelection) {
+    return draw;
+  } else if (playerChoice === "rock" && computerSelection === "scissors") {
+    return playerWinRound;
 
-function playRound(playerSelection, compuChoice) {
-   
-    if (compuChoice === 'Paper' && playerSelection === 'rock') {
-        return 'You lose! Paper beats Rock!';
-    }
-    else if (compuChoice === 'Scissors' && playerSelection === 'rock') {
-        return 'You win! Rock beats Scissors!';
-    }
-    else if (compuChoice === 'Rock' && playerSelection === 'rock') {
-        return "It's a tie!";
-    }
-    else if (compuChoice === 'Paper' && playerSelection === 'paper') {
-        return "It's a tie!";
-    }
-    else if (compuChoice === 'Paper' && playerSelection === 'scissors') {
-        return 'You Win! Scissors beats paper!';
-    }
-    else if (compuChoice === 'Scissors' && playerSelection === 'paper') {
-        return 'You lose! Scissors beats paper!';
-    }
-    else if (compuChoice === 'Scissors' && playerSelection === 'scissors') {
-        return "It's a tie!";
-    }
-    else if (compuChoice === 'Rock' && playerSelection === 'scissors') {
-        return 'You lose! Rock beats scissors!';
-    }
-    else if (compuChoice === 'Rock' && playerSelection === 'paper') {
-        return 'You win! Paper beats rock!';
-    }
+  } else if (playerChoice === "paper" && computerSelection === "rock") {
+    return playerWinRound;
+
+  } else if (playerChoice === "scissors" && computerSelection === "paper") {
+    return playerWinRound;
+
+  } else {
+    return computerWinRound;
+
+  }
 }
-let playerSelection = prompt('Choose Rock, Paper or Scissors').toLowerCase();
-let compuSelection = compuChoice();
-console.log(playRound(playerSelection, compuSelection));
+
+//Specifies round win/game win messages
+let playerWinRound = "Player wins this round!"
+let computerWinRound = "Computer wins this round!"
+let draw = "Draw!"
+let playerWin = "Player wins the game! Congratulations!"
+let computerWin = "Computer wins the game! Congratulations!"
 
 
-//function that makes games 5 rounds 
+//For loop that plays until someone reaches 5 wins
+for (let i = 0; i < 100; i++) {
+  let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+  const computerSelection = computerChoice();
+  let roundResult = playRound(playerSelection, computerSelection);
+  console.log(roundResult);
+  game(roundResult);
+  console.log("Your score is " + playerScore);
+  console.log("The computer's score is " + computerScore);
 
-function game() {
-    playRound(playerSelection, compuChoice);
-    for (let i = 0; i < 5; i++) {
-        if (playerSelection === 'rock' && compuChoice === 'Scissors') {
-            console.log('You win!' && ++myScore);
-        } else {
-            console.log('You lose!' &&  ++compScore);
-        }
-    }
+  if (playerScore === 5 || computerScore === 5) {
+    break;
+  }
 }
-console.log(game());
 
 
+//Score keeping and outputs correct messages based on score
+function game(result) {
+
+  if (result === playerWinRound) {
+    playerScore++;
+  } else if (result === draw) {
+    draws++;
+  } else {
+    computerScore++;
+  }
 
 
-
+  if (playerScore === 5) {
+    console.log(playerWin);
+    return;
+  }
+  if (computerScore === 5) {
+    console.log(computerWin);
+    return;
+  }
+}
