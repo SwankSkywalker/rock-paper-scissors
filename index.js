@@ -15,16 +15,16 @@ function computerChoice() {
 }
 
 //Plays one round of RPS
-function playRound(playerChoice, computerSelection) {
-  if (playerChoice === computerSelection) {
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
     return draw;
-  } else if (playerChoice === "rock" && computerSelection === "scissors") {
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
     return playerWinRound;
 
-  } else if (playerChoice === "paper" && computerSelection === "rock") {
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
     return playerWinRound;
 
-  } else if (playerChoice === "scissors" && computerSelection === "paper") {
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
     return playerWinRound;
 
   } else {
