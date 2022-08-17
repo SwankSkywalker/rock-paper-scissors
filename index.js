@@ -3,7 +3,7 @@ let computerScore = 0;
 let draws = 0;
 
 //Computer choice
-function computerChoice() {
+function computerSelection() {
   let random = (Math.floor(Math.random() * 3));
   if (random === 0) {
     return "paper";
@@ -44,7 +44,7 @@ let computerWin = "Computer wins the game! Congratulations!"
 //For loop that plays until someone reaches 5 wins
 for (let i = 0; i < 100; i++) {
   let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-  const computerSelection = computerChoice();
+  const computerSelection = computerSelection();
   let roundResult = playRound(playerSelection, computerSelection);
   console.log(roundResult);
   game(roundResult);
