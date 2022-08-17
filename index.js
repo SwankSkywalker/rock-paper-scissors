@@ -3,7 +3,7 @@ let computerScore = 0;
 let draws = 0;
 
 //Computer choice
-function computerSelection() {
+function computerChoice() {
   let random = (Math.floor(Math.random() * 3));
   if (random === 0) {
     return "paper";
@@ -15,16 +15,16 @@ function computerSelection() {
 }
 
 //Plays one round of RPS
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
+function playRound(playerSelection, computerChoice) {
+  if (playerSelection === computerChoice) {
     return draw;
-  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+  } else if (playerSelection === "rock" && computerChoice === "scissors") {
     return playerWinRound;
 
-  } else if (playerSelection === "paper" && computerSelection === "rock") {
+  } else if (playerSelection === "paper" && computerChoice === "rock") {
     return playerWinRound;
 
-  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+  } else if (playerSelection === "scissors" && computerChoice === "paper") {
     return playerWinRound;
 
   } else {
@@ -44,10 +44,10 @@ let computerWin = "Computer wins the game! Congratulations!"
 //For loop that plays until someone reaches 5 wins
 for (let i = 0; i < 100; i++) {
   let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-  const computerSelection = computerSelection();
+  const computerSelection = computerChoice();
   let roundResult = playRound(playerSelection, computerSelection);
   console.log(roundResult);
-  game(roundResult);
+  gameScore(roundResult);
   console.log("Your score is " + playerScore);
   console.log("The computer's score is " + computerScore);
 
@@ -58,7 +58,7 @@ for (let i = 0; i < 100; i++) {
 
 
 //Score keeping and outputs correct messages based on score
-function game(result) {
+function gameScore(result) {
 
   if (result === playerWinRound) {
     playerScore++;
