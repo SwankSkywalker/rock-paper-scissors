@@ -1,0 +1,43 @@
+h1 {
+display: flex;
+justify-content: center;
+align-content: center;
+align-items: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+button {
+    border-radius: 25px;
+    padding: 8, 24;
+    color: antiquewhite;
+    background-color: coral;
+    width: 100px;
+    height: 50px;
+}
+
+div.text-line {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 50px;
+    
+    
+}
+
+#output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 50px;
+}
