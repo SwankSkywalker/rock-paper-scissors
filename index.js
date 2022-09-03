@@ -1,80 +1,93 @@
+
+
+let compChoice = {Value: ""};
+let playerChoice;
+let compChoiceInt = 0;
+let playerChoiceInt = 0;
+const buttons = document.querySelectorAll('.btn');
+
 let playerScore = 0;
 let computerScore = 0;
-let draws = 0;
 
-//Computer choice
-function computerChoice() {
-  let random = (Math.floor(Math.random() * 3));
-  if (random === 0) {
-    return "paper";
-  } else if (random === 1) {
-    return "rock";
-  } else if (random === 2) {
-    return "scissors";
-  }
+const player = document.querySelector("#playerScore");
+player.textContent = `Player Score: ${playerScore}`;
+
+const computer = document.querySelector("#computerScore");
+computer.textContent = `Computer Score: ${computerScore}`;
+
+const output = document.querySelector("#output");
+output.textContent = "May the Best Contender Win!"
+
+
+buttons.forEach((button)=>{button.addEventListener('click',()=>{
+
+    playerChoice = button.id;
+    if (playerChoice == "rock"){
+        playerChoiceInt = 0;
+    }
+    else if (playerChoice == "paper"){
+        playerChoiceInt = 1;
+    }
+    else if (playerChoice == "scissors")
+    {
+        playerChoiceInt = 2;
+    }
+    compChoiceInt = computerPlay(compChoice);
+    playGame();
+    })
+
+})
+
+function computerPlay(compChoice){
+    let choiceNum = Math.floor(Math.random() * 3);
+    if (choiceNum == 0){
+        compChoice.Value = "rock";
+    }
+    else if (choiceNum == 1){
+        compChoice.Value = "paper";
+    }
+    else if(choiceNum == 2){
+        compChoice.Value = "scissors";
+    }
+    return choiceNum;
 }
 
-//Plays one round of RPS
-function playRound(playerSelection, computerChoice) {
-  if (playerSelection === computerChoice) {
-    return draw;
-  } else if (playerSelection === "rock" && computerChoice === "scissors") {
-    return playerWinRound;
-
-  } else if (playerSelection === "paper" && computerChoice === "rock") {
-    return playerWinRound;
-
-  } else if (playerSelection === "scissors" && computerChoice === "paper") {
-    return playerWinRound;
-
-  } else {
-    return computerWinRound;
-
-  }
-}
-
-//Specifies round win/game win messages
-let playerWinRound = "Player wins this round!"
-let computerWinRound = "Computer wins this round!"
-let draw = "Draw!"
-let playerWin = "Player wins the game! Congratulations!"
-let computerWin = "Computer wins the game! Congratulations!"
-
-
-//For loop that plays until someone reaches 5 wins
-for (let i = 0; i < 100; i++) {
-  let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-  const computerSelection = computerChoice();
-  let roundResult = playRound(playerSelection, computerSelection);
-  console.log(roundResult);
-  gameScore(roundResult);
-  console.log("Your score is " + playerScore);
-  console.log("The computer's score is " + computerScore);
-
-  if (playerScore === 5 || computerScore === 5) {
-    break;
-  }
-}
-
-
-//Score keeping and outputs correct messages based on score
-function gameScore(result) {
-
-  if (result === playerWinRound) {
+function playRound(){
+        let win_array = [[0, 2, 1], 
+                        [1, 0, 2], 
+                        [2, 1, 0]];
+    let result = win_array[playerChoiceInt][compChoiceInt];
+    if (result == 0){
+    output.textContent = `Its a tie! You chose ${playerChoice} and The computer chose ${compChoice.Value}`;
+    }
+    else if (result == 1){
+    output.textContent = `You won! You chose ${playerChoice} and The computer chose ${compChoice.Value}`;
     playerScore++;
-  } else if (result === draw) {
-    draws++;
-  } else {
+
+    }
+    else if (result == 2){
+    output.textContent = `You lost! You chose ${playerChoice} and The computer chose ${compChoice.Value}`;
     computerScore++;
-  }
+    }
+}
 
-
-  if (playerScore === 5) {
-    console.log(playerWin);
-    return;
-  }
-  if (computerScore === 5) {
-    console.log(computerWin);
-    return;
-  }
+function playGame(){
+        output.textContent = "Choose Rock, Paper, or Scissors";
+        playRound();
+        player.textContent = `Player Score: ${playerScore}`;
+        computer.textContent = `Computer Score: ${computerScore}`;
+        if (playerScore == 5){
+            output.textContent = "You Won the Game! Congrats";
+            playerScore = 0;
+            compScore = 0;
+            player.textContent = `Player Score: ${playerScore}`;
+            computer.textContent = `Computer Score: ${computerScore}`;
+        }
+        else if (computerScore == 5){
+            output.textContent = "You Lost the game 🫠 Better luck next time 😬"
+            playerScore = 0;
+            compScore = 0;
+            player.textContent = `Player Score: ${playerScore}`;
+            computer.textContent = `Computer Score: ${computerScore}`;
+        }
 }
