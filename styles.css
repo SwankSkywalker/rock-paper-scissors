@@ -1,28 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
+body{
+    font-family: 'Gugi', cursive;
+}
+
 h1 {
 display: flex;
 justify-content: center;
 align-content: center;
 align-items: center;
+padding-bottom: 50px;
+font-size: 50px;
 }
 
 h2 {
     display: flex;
     justify-content: center;
+    padding-bottom: 50px;
+    font-size: 40px;
+}
+
+
+button {
+    justify-content: center;
+    align-content: center;
+    border-radius: 25px;
+    padding: 8px 24px;
+    color: antiquewhite;
+    background-color: coral;
+    height: 50px;
+    width: 100px;
 }
 
 .buttons {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
-}
-button {
-    border-radius: 25px;
-    padding: 8, 24;
-    color: antiquewhite;
-    background-color: coral;
-    width: 100px;
-    height: 50px;
+    padding-bottom: 50px;
 }
 
 div.text-line {
@@ -30,9 +44,8 @@ div.text-line {
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
-    padding: 50px 50px;
-    
-    
+    padding: 50px;
+    font-size: 30px;
 }
 
 #output {
@@ -40,4 +53,5 @@ div.text-line {
     justify-content: center;
     align-items: center;
     padding: 50px 50px;
+    font-size: 40px;
 }
